@@ -1,5 +1,6 @@
 package com.eureka.store.controller;
 
+import com.eureka.store.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +14,13 @@ import java.util.Date;
  */
 @RestController
 public class CustomerController {
+
     @Autowired
-    private RestTemplate restTemplate;
+    HelloService helloService;
 
     @RequestMapping("/hello")
     public String hello() {
-        return restTemplate.getForEntity("http://hello-server/hello", String.class).getBody();
+        return helloService.helloService();
     }
 
     @RequestMapping("/test")
